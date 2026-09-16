@@ -25,7 +25,7 @@ Keys needed:
 2. Once all three finish, the full texts are sent to Claude with labels A/B/C
    (randomized assignment, not "Claude/GPT/Gemini") so the judgment isn't biased
    by Claude recognizing its own writing style.
-3. Claude judges via **tool use** — this forces a structured, guaranteed-valid
+3. Claude judges via **tool use** - this forces a structured, guaranteed-valid
    response (which pair is most similar, which is most accurate, plus reasoning)
    instead of parsing free-text JSON.
 4. The column-to-model mapping is revealed after judging, in an expander.
