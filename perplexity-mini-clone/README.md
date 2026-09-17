@@ -25,7 +25,7 @@ Keys needed:
 2. Once all three finish, the full texts are sent to Claude with labels A/B/C
    (randomized assignment, not "Claude/GPT/Gemini") so the judgment isn't biased
    by Claude recognizing its own writing style.
-3. Claude judges via **tool use** - this forces a structured, guaranteed-valid
+3. Claude judges via **tool use** — this forces a structured, guaranteed-valid
    response (which pair is most similar, which is most accurate, plus reasoning)
    instead of parsing free-text JSON.
 4. The column-to-model mapping is revealed after judging, in an expander.
@@ -44,10 +44,6 @@ Keys needed:
 - Model IDs (`CLAUDE_MODEL`, `GPT_MODEL`, `GEMINI_MODEL`) are set as constants near
   the top of `app.py` — swap `claude-sonnet-5` for `claude-haiku-4-5-20251001` if
   you want a cheaper judge call.
-- Clone and add your own api keys inside secrets.toml (.toml stands for Tom's Obvious, Minimal Language),
-  designed to be easy for humans to read and write,
-  unlike JSON (no trailing-comma pain, no nested-bracket soup) or YAML (no whitespace-sensitivity headaches).
-   Its Streamlit’s own structure. You can use .env file and store API keys but that would need additional steps.
 - Streaming three providers concurrently uses plain Python threads and a shared
   dict, polled every ~0.12s to repaint the Streamlit placeholders. This is simple
   and works well for 3 concurrent calls; it's not meant to scale to dozens.
