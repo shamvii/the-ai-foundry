@@ -1,0 +1,15 @@
+Senior Backend Engineer — Healthcare Platform
+
+We're looking for a Senior Backend Engineer to help scale our claims and
+eligibility platform. You'll work primarily in Python (FastAPI), own
+services processing sensitive healthcare data under HIPAA constraints, and
+partner closely with product and compliance teams.
+
+Requirements:
+- 5+ years building production backend services in Python
+- Experience with FastAPI or similar async frameworks
+- Strong SQL/PostgreSQL skills, including query optimization
+- Experience with containerized deployments (Docker, AWS)
+- Comfortable mentoring junior engineers
+- Bonus: experience in regulated industries (healthcare, fintech)
+- Bonus: AWS certification

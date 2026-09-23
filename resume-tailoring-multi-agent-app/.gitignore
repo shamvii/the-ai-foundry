@@ -1,0 +1,13 @@
+sample_data/base_resume.json
+sample_data/master_resume_style.pdf
+sample_data/my_resume.pdf
+sample_data/jd_*.txt
+evals/test_jds/
+evals/last_run_results.json
+output/
+venv/
+.env
+.streamlit/secrets.toml
+__pycache__/
+*.pyc
+.DS_Store

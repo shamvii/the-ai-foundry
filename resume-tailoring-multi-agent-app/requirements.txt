@@ -1,0 +1,9 @@
+crewai>=0.80
+pydantic>=2.0
+
+# Optional — only needed if you use export_resume.py
+python-docx>=1.0
+reportlab>=4.0
+
+# Optional — only needed if you use export_resume.py with a .pdf --template
+pdfplumber>=0.11
