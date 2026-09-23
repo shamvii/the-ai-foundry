@@ -27,6 +27,41 @@ and they don't themselves need evaluating. Agent 2 never sees the base
 resume, only the tailored output and the JD, so its score isn't biased by
 "knowing" what changed.
 
+## Using your own resume (start here)
+
+This repo does **not** include a real resume — `sample_data/base_resume.json`
+and `sample_data/master_resume_style.pdf` are gitignored on purpose, since
+they'd otherwise put someone's real name, email, phone number, and work
+history in a public repo permanently (git history doesn't forget, even if
+you delete a file later).
+
+Instead, `sample_data/base_resume.example.json` is a fictional resume
+committed to the repo, matching the exact schema the pipeline expects. To
+use this yourself:
+
+1. Copy the example: `cp sample_data/base_resume.example.json sample_data/base_resume.json`
+2. Replace the fictional content with your real experience, keeping the same
+   structure — skills grouped into categories, experience entries, education,
+   certifications with issuer/date.
+3. (Optional) Drop your own resume file in as `sample_data/master_resume_style.pdf`
+   (or `.docx`) if you want exports to match your existing fonts/sizing —
+   see "Exporting to Word or PDF" below.
+
+Both `base_resume.json` and `master_resume_style.pdf` are already listed in
+`.gitignore`, so once you create them locally, git won't try to commit them.
+
+### Files this repo intentionally excludes (see `.gitignore`)
+
+| Excluded | Why |
+|---|---|
+| `sample_data/base_resume.json` | Real personal resume data |
+| `sample_data/master_resume_style.pdf` | Real resume file, same reason |
+| `sample_data/jd_*.txt` | Real job descriptions you're applying to |
+| `evals/test_jds/` | Same — real JDs used for eval testing |
+| `evals/last_run_results.json` | Generated eval output containing your tailored content |
+| `output/` | Every tailoring run's output — tailored resumes, reports |
+| `venv/` | Regenerate with `pip install -r requirements.txt` |
+
 ## Setup
 
 ```bash
@@ -83,13 +118,14 @@ python export_resume.py --input output/tailoring_report.json --format both
 python main.py --resume sample_data/base_resume.json --jd sample_data/sample_jd.txt
 ```
 
+(Or `sample_data/base_resume.example.json` if you haven't set up your own
+resume yet — see "Using your own resume" above.)
+
 This prints the tailoring report to the console and saves the full JSON
 (tailored resume + guardrail results + evaluation) to
 `output/tailoring_report.json`.
 
-To use your own resume: copy `sample_data/base_resume.json`, fill in your
-real experience in the same schema, and point `--resume` at it. Job
-descriptions are just plain `.txt` files — paste the JD in as-is.
+Job descriptions are just plain `.txt` files — paste the JD in as-is.
 
 Optional flags:
 - `--max-pages 1.5` — tighten or loosen the page-length guardrail
