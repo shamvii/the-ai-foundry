@@ -54,9 +54,18 @@ def _word_count(resume: Resume) -> int:
 def _extract_content_tokens(resume: Resume) -> set:
     """Lowercased, punctuation-stripped words from every part of the resume
     that could contain a CLAIM (skills, bullets, project descriptions).
-    Education and certifications are deliberately excluded here — they're
-    locked/reorder-only fields, not places Agent 1 should be adding claims."""
-    text_parts = [resume.summary]
+
+    `summary` is deliberately EXCLUDED from this check: Agent 1 is explicitly
+    instructed to write a fresh summary when the base resume's is empty (a
+    common case), which means every word in a freshly-written summary would
+    otherwise look "new" and trigger false fabrication flags on totally
+    generic phrasing ("experienced", "proven", "background"). A summary is
+    supposed to be a synthesis in new words, not a verbatim echo — checking
+    it the same way as bullets/skills produces near-constant false positives.
+
+    Education and certifications are also excluded — they're locked/reorder-
+    only fields, not places Agent 1 should be adding claims."""
+    text_parts = []
     for cat in resume.skills:
         text_parts.extend(cat.skills)
     for exp in resume.experience:
